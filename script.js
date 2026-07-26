@@ -3,6 +3,7 @@ const bannerMarkup = `
 		<a class="brand-link" href="index.html">SENTRO</a>
 		<div class="banner-right">
 			<nav class="banner-nav">
+				<a href="main.html">Main</a>
 				<a href="party-members.html">Credentials</a>
 				<a href="platforms-agenda.html">Platforms</a>
 				<a href="gamification.html">Play Hub</a>
