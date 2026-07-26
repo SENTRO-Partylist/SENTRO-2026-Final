@@ -560,7 +560,7 @@ const sentroMembers = [
 	},
 	{
 		id: "faith",
-		fullName: "Faith Loraine J. Robdelas",
+		fullName: "Faith Loraigne J. Robdelas",
 		position: "Grade 11 SE Representative",
 		imageUrl: "img/members/faith.png",
 		credentials: {
