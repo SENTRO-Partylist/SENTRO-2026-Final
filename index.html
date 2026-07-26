@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SENTRO PARTYLIST</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+
+  <style>
+
+.red {
+  color: #000; /* Bloody red */
+}
+
+.white {
+  color: #fff; /* Clean white */
+}
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      font-family: 'Inter', sans-serif;
+      background: url('cover.jpg') no-repeat center center / cover;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding-left: 8%;
+      padding-right: 8%;
+      color: #fff;
+    }
+body {
+  position: relative;
+  background: url('img/coverpiece2.png') no-repeat center center / cover;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.fire-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://i.makeagif.com/media/12-21-2015/eL8s5B.gif') no-repeat center center / cover;
+  mix-blend-mode: screen;
+  opacity: 0.2;
+  z-index: 1;
+}
+
+.content {
+  position: relative;
+  z-index: 2; /* keeps it above the fire */
+}
+
+
+    .content {
+      max-width: 900px;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+
+
+.logo {
+  width: 150px;
+  height: 130px;
+  margin-bottom: 2rem;
+}
+
+.logo img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px; /* curved edges */
+  background: none; /* remove white */
+  padding: 0; /* remove padding */
+}
+
+
+h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 5.2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: #fff; /* white */
+}
+
+
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 95%;
+}
+
+a button {
+  background-color: transparent;
+  color: #fff;
+  font-size: 1rem;
+  padding: 0.8rem 2rem;
+  border: 2px solid #fff;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+a button:hover {
+  background-color: #fff;
+  color: #320c0c;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+}
+
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        justify-content: center;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        text-align: center;
+      }
+
+      .logo {
+        margin: 0 auto 2rem auto;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      p {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+ <div class="fire-overlay"></div>
+  <div class="content">
+    <div class="logo">
+      <img src="img/logo.png" alt="Sentro Logo">
+    </div>
+    <h1><span class="red"></span> <span class="white">SENTRO PARTYLIST</span></h1>
+    <p>SENTRO is the longest-running political party in De La Salle Lipa Senior High School Community, putting the Lipasallian at the center of its purpose since SHS’ inception at DLSL way back 2017. Magbigay ng serbisyong tapat is what has long been the guiding principle of this party, driving the Senior Student Coordinating Board toward ever greater heights with each successive SENTRO leadership.</p>
+    <a href="main.html">
+      <button>CLICK HERE</button>
+    </a>
+  </div>
+</body>
+</html>

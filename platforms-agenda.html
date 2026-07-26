@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SENTRO | Platforms</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --banner-offset: 86px;
+      --card-bg: #ffffff;
+      --card-text: #13161c;
+      --card-muted: #5f6a7b;
+      --card-border: #e7ebf0;
+      --badge-red: #ff2f43;
+      --accent-red: #e11d2f;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top right, rgba(214, 14, 44, 0.22), transparent 42%),
+        radial-gradient(circle at 0% 80%, rgba(133, 7, 24, 0.2), transparent 44%),
+        linear-gradient(180deg, #090909 0%, #000000 56%, #070707 100%);
+      color: #f5f5f5;
+    }
+
+    .platforms-page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: calc(var(--banner-offset) + 18px) 20px 66px;
+    }
+
+    .platforms-hero {
+      margin: 0 0 28px;
+      padding: 8px 4px;
+    }
+
+    .platform-kicker {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--badge-red);
+      color: #ffffff;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .platforms-hero h1 {
+      max-width: 740px;
+      margin: 16px 0 12px;
+      color: #f8f9fb;
+      font-size: clamp(1.5rem, 4.2vw, 2.7rem);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+
+    .platforms-hero h1 .vision-accent {
+      color: #ff4d4f;
+    }
+
+    .platforms-hero p {
+      max-width: 760px;
+      margin: 0;
+      color: rgba(224, 228, 235, 0.94);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .platforms-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .platform-accordion {
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      box-shadow: 0 12px 20px rgba(7, 11, 22, 0.16);
+    }
+
+    .platform-toggle {
+      width: 100%;
+      border: 0;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: center;
+      text-align: left;
+      padding: 18px 22px;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .platform-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .platform-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: #ffffff;
+      fill: none;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .icon-fest {
+      background: linear-gradient(160deg, #5f77c4, #5462b0);
+    }
+
+    .icon-fiesta {
+      background: linear-gradient(160deg, #d66a8b, #c95a7b);
+    }
+
+    .icon-clique {
+      background: linear-gradient(160deg, #cfae5b, #c29d4c);
+    }
+
+    .icon-reviewers {
+      background: linear-gradient(160deg, #6578c7, #5c61b3);
+    }
+
+    .icon-rated {
+      background: linear-gradient(160deg, #d46476, #c65668);
+    }
+
+    .icon-shecares {
+      background: linear-gradient(160deg, #cf8c53, #c17b46);
+    }
+
+    .icon-tohought {
+      background: linear-gradient(160deg, #8a69b8, #7756a6);
+    }
+
+    .icon-choice {
+      background: linear-gradient(160deg, #5f9fbb, #4e88a8);
+    }
+
+    .icon-medjust {
+      background: linear-gradient(160deg, #5f9c85, #4d876f);
+    }
+
+    .icon-cosca {
+      background: linear-gradient(160deg, #cf8b5d, #bf774a);
+    }
+
+    .icon-csya {
+      background: linear-gradient(160deg, #c97373, #a95f5f);
+    }
+
+    .platform-title {
+      display: block;
+      margin: 0 0 12px;
+      color: var(--card-text);
+      font-size: 18px;
+      line-height: 1.15;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    .platform-summary {
+      display: block;
+      margin: 0;
+      color: #565656;
+      line-height: 1.5;
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    .platform-indicator {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      color: #7f8794;
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 0.9;
+      align-self: center;
+      flex-shrink: 0;
+    }
+
+    .platform-accordion:not(.is-open) .platform-indicator {
+      transform: translateY(-1px);
+    }
+
+    .platform-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.26s ease;
+    }
+
+    .platform-panel p {
+      margin: 0;
+      padding: 0 22px 20px 88px;
+      color: #000000;
+      font-size: 16px;
+      line-height: 1.7;
+      border-top: 1px solid #eef1f4;
+      padding-top: 14px;
+    }
+
+    .platform-toggle:focus-visible {
+      outline: 3px solid rgba(225, 29, 47, 0.24);
+      outline-offset: -3px;
+    }
+
+    @media (max-width: 1024px) {
+      :root {
+        --banner-offset: 124px;
+      }
+
+      .platforms-page {
+        padding: calc(var(--banner-offset) + 10px) 14px 44px;
+      }
+
+      .platforms-hero {
+        margin-bottom: 18px;
+      }
+
+      .platform-toggle {
+        padding: 14px;
+        gap: 10px;
+      }
+
+      .platform-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 999px;
+      }
+
+      .platform-panel p {
+        padding-left: 14px;
+        padding-right: 14px;
+        padding-bottom: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="site-banner-root"></div>
+
+  <main class="platforms-page">
+    <section class="platforms-hero" aria-label="Platforms introduction">
+      <span class="platform-kicker">Our Platform</span>
+      <h1>Eleven Platforms. <span class="vision-accent">One Vision.</span></h1>
+      <p>Every proposal below was shaped by real student feedback. Tap a platform to view the full commitment.</p>
+    </section>
+
+    <section class="platforms-list" aria-label="List of SENTRO platforms">
+      <article class="platform-accordion">
+        <button class="platform-toggle" type="button" aria-expanded="false" aria-controls="platform-panel-1">
+          <span class="platform-icon icon-fest" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 6h7a3 3 0 0 1 3 3v10H7a3 3 0 0 0-3 3z"></path>
+              <path d="M20 6h-7a3 3 0 0 0-3 3v10h7a3 3 0 0 1 3 3z"></path>
+            </svg>
+          </span>
+          <span>
+            <span class="platform-title">FESTIVOICES</span>
+            <span class="platform-summary">A student-suggestion channel focused on improving school festivities.</span>
+          </span>
+          <span class="platform-indicator" aria-hidden="true">+</span>
+        </button>
+        <div class="platform-panel" id="platform-panel-1">
+          <p>A participatory platform that invites students to share their creative ideas for upcoming institutional events. It aims to foster a sense of belonging by allowing the students to take part in the planning process, ensuring that programs and activities reflect the community's preferences. Through this initiative, the SCB can design festivities that balance student interest while also carefully considering all other factors such as feasibility, safety, sustainability, and collective benefit. It is designed specifically for school festivities because, while existing platforms allow students to voice their opinions, these spaces are often too broad, causing ideas related to events to be overlooked. Festivoices focuses solely on gathering suggestions for school festivities, recognizing that vibrant and inclusive events are essential to students' overall experience.</p>
+        </div>
+      </article>
+
+      <article class="platform-accordion">
+        <button class="platform-toggle" type="button" aria-expanded="false" aria-controls="platform-panel-2">
+          <span class="platform-icon icon-fiesta" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 21s-7-4.35-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 11c0 5.65-7 10-7 10z"></path>
+            </svg>
+          </span>
+          <span>
+            <span class="platform-title">BATCH FIESTA</span>
+            <span class="platform-summary">A batch-wide Filipino celebration that strengthens belonging across sections.</span>
+          </span>
+          <span class="platform-indicator" aria-hidden="true">+</span>
+        </button>
+        <div class="platform-panel" id="platform-panel-2">
+          <p>In the Philippines, we are accustomed to fiestahans, celebrations of patron saints, culture, and milestones. At the heart of every fiesta is communion: the joy of belonging to a community. This spirit is what the Grade 11 batch deserves to celebrate, especially now with many new students joining us. Too often, events are limited to classmates within the same section or circles of friends during the Foundation week. Our platform seeks to break these boundaries by bringing the entire batch together in one grand fiesta of belonging. Through familiar Filipino activities and the sharing of dishes we proudly call ours, we strengthen bonds, nurture friendships, and showcase our culture. This celebration is more than just a fun getaway from all the schoolwork; it is a way to grow close as one community, to honor our heritage, and to create even more memories that remind us that we all belong here.</p>
+        </div>
+      </article>
+
+      <article class="platform-accordion">
+        <button class="platform-toggle" type="button" aria-expanded="false" aria-controls="platform-panel-3">
+          <span class="platform-icon icon-clique" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 7h16v10H7l-3 3z"></path>
+            </svg>
+          </span>
+          <span>
+            <span class="platform-title">CLICK WITH YOUR CLIQUE</span>
+            <span class="platform-summary">Cluster-exclusive socials to help students transition and connect faster.</span>
+          </span>
+          <span class="platform-indicator" aria-hidden="true">+</span>
+        </button>
+        <div class="platform-panel" id="platform-panel-3">
+          <p>As we embark on our new SHS journey, adjusting to new routines and environments can feel overwhelming. This platform is a cluster-exclusive get-together for each academic cluster-Business Management, Health Allied, Science and Engineering, and Arts, Humanities, and Social Sciences. It is designed to help students loosen up, connect, and build friendships with peers who share the same path, making the transition smoother and more memorable. It's a chance to recharge, laugh, and feel at home in your new circle to truly click with your clique.</p>
+        </div>
+      </article>
+
+      <article class="platform-accordion">
+        <button class="platform-toggle" type="button" aria-expanded="false" aria-controls="platform-panel-4">
+          <span class="platform-icon icon-reviewers" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <rect x="4" y="5" width="16" height="15" rx="2"></rect>
+              <path d="M8 3v4M16 3v4M4 10h16"></path>
+            </svg>
+          </span>
+          <span>
+            <span class="platform-title">SENT-REVIEWERS</span>
+            <span class="platform-summary">A monitored batch-wide hub where students share reviewers safely.</span>
+          </span>
+          <span class="platform-indicator" aria-hidden="true">+</span>
+        </button>
+        <div class="platform-panel" id="platform-panel-4">
+          <p>Group studies and shared reviewers have always been considered as a lifeline for surviving graded tasks and assessments. This platform takes that spirit further by creating one massive space for all Grade 11 students to share reviewers in a safe, organized, and monitored environment. With administrators ensuring privacy and setting clear policies, students can freely exchange knowledge and benefit from one another. Think of it as one big group study not just to survive hectic weeks, but to thrive in them.</p>
+        </div>
+      </article>
+
+      <article class="platform-accordion">
+        <button class="platform-toggle" type="button" aria-expanded="false" aria-controls="platform-panel-5">
+          <span class="platform-icon icon-rated" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 15a8 8 0 0 1 16 0"></path>
+              <path d="M7.5 15a4.5 4.5 0 0 1 9 0"></path>
+              <path d="M11.5 15a.5.5 0 1 1 1 0"></path>
+              <path d="M12 19v0"></path>
+            </svg>
+          </span>
+          <span>
+            <span class="platform-title">RATED LASALLE: Snapshots for Steps</span>
+            <span class="platform-summary">A photo fundraiser that turns memories into charity for those in need.</span>
+          </span>
+          <span class="platform-indicator" aria-hidden="true">+</span>
+        </button>
+        <div class="platform-panel" id="platform-panel-5">
+          <p>Sentro believes that change begins with small communities, from our batch to our school, and outward to the wider society. This platform is built to spark that change by engaging students in activities that reflect our generation's spirit while extending compassion and generosity beyond the walls of our school. Through our fundraiser, students can enjoy a photobooth with their friends and classmates while contributing to a meaningful cause. Each photo taken becomes more than just a memory; it becomes a captured gesture of charity. The funds raised will provide slippers for those in need outside our school community. In this way, each smile, each funny pose, and each laugh shared within the photobooth translates into a step forward for someone less fortunate. Together, we create a chain of generosity: one photo, one slipper, one step at a time. With this, we can become a community that walks hand in hand with kindness.</p>
+        </div>
+      </article>
+
+      <article class="platform-accordion">
+        <button class="platform-toggle" type="button" aria-expanded="false" aria-controls="platform-panel-6">
+          <span class="platform-icon icon-shecares" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="8" r="3"></circle>
+              <path d="M5 20c1.2-3 3.8-5 7-5s5.8 2 7 5"></path>
+            </svg>
+          </span>
+          <span>
+            <span class="platform-title">Women's Month: SheCares</span>
+            <span class="platform-summary">Free sanitary essentials in comfort rooms to support well-being with dignity.</span>
+          </span>
+          <span class="platform-indicator" aria-hidden="true">+</span>
+        </button>
+        <div class="platform-panel" id="platform-panel-6">
+          <p>The Lasallian community is incomplete without the presence and contributions of women. In celebration of Women's Month, Sentro proposes a compassionate initiative to honor their invaluable role in society by providing free sanitary items in comfort rooms for students and staff in need. With careful attention to safety and sanitation, this effort aims not only to support women's well-being but also to foster a culture of sharing and solidarity, ensuring that this gesture of care extends throughout the community. While this may seem like a simple gesture, our partylist believes it reflects the very nature of how women give care to the world-not always through grand or extravagant acts, but often through quiet, everyday ways that carry deep meaning.</p>
+        </div>
+      </article>
+
+      <article class="platform-accordion">
+        <button class="platform-toggle" type="button" aria-expanded="false" aria-controls="platform-panel-8">
+          <span class="platform-icon icon-choice" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 12h6l2 2 8-8"></path>
+              <path d="M4 6h10"></path>
+              <path d="M4 18h10"></path>
+            </svg>
+          </span>
+          <span>
+            <span class="platform-title">C.H.O.I.C.E.</span>
+            <span class="platform-summary">A guidance-first conduct platform that promotes integrity through dialogue.</span>
+          </span>
+          <span class="platform-indicator" aria-hidden="true">+</span>
+        </button>
+        <div class="platform-panel" id="platform-panel-8">
+          <p>We envision CHOICE as a platform that advocates for positive student conduct, not through rigid enforcement, but through presence, dialogue, and timely reminders. We recognize that it is always the students' choice whether to act with integrity, but we stand ready to guide when challenges arise. As fellow Lasallians, we do not dictate what must or must not be done; enough voices already do that. Instead, we offer reminders that encourage good decision-making in crucial moments. By fostering morale and healthy connections, CHOICE aims to reduce bullying, harassment, violence, and conflict, strengthening our shared Lasallian integrity. This is not about control. It is about community. It is about choosing well, together.</p>
+        </div>
+      </article>
+
+      <article class="platform-accordion">
+        <button class="platform-toggle" type="button" aria-expanded="false" aria-controls="platform-panel-9">
+          <span class="platform-icon icon-medjust" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M5 8h14v10H5z"></path>
+              <path d="M5 8l7 5 7-5"></path>
+            </svg>
+          </span>
+          <span>
+            <span class="platform-title">MedJust For You</span>
+            <span class="platform-summary">Christmas stocking exchanges that build friendships across sections.</span>
+          </span>
+          <span class="platform-indicator" aria-hidden="true">+</span>
+        </button>
+        <div class="platform-panel" id="platform-panel-9">
+          <p>We've noticed that Christmas parties often stay within section walls, with bonding limited to classmates. Medjust for You is our way of opening that circle. By placing Christmas stockings in every section, we create a chance for students to reach out across sections, sending messages, small tokens, or greetings that foster deeper relationships. This platform celebrates the holiday spirit not just within sections, but as one Lasallian community, united in joy and connection.</p>
+        </div>
+      </article>
+
+      <article class="platform-accordion">
+        <button class="platform-toggle" type="button" aria-expanded="false" aria-controls="platform-panel-10">
+          <span class="platform-icon icon-cosca" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <circle cx="7" cy="8" r="2"></circle>
+              <circle cx="17" cy="8" r="2"></circle>
+              <path d="M3 18c.8-2.2 2.6-3.5 4.8-3.5S11.8 15.8 12.6 18"></path>
+              <path d="M11.4 18c.8-2.2 2.6-3.5 4.8-3.5S20.2 15.8 21 18"></path>
+            </svg>
+          </span>
+          <span>
+            <span class="platform-title">Strengthened COSCA</span>
+            <span class="platform-summary">A transparent concern-and-feedback bridge between sections and administration.</span>
+          </span>
+          <span class="platform-indicator" aria-hidden="true">+</span>
+        </button>
+        <div class="platform-panel" id="platform-panel-10">
+          <p>As part of a growing community, our partylist seeks to uphold the genuine connection between the SSCB and the student body through a platform where each section can voice concerns via their class presidents. These may cover school utilities, student services, academics, activities, the Lasallian community, and other matters that calls for attention. While we may not hold the direct solutions to every concern, we commit to being the bridge to the higher administration. To foster a true feedback exchange, we will provide transparent updates and reports on the progress of these concerns. Beyond concerns, this space also welcomes commendations and ideas, fostering not only a vocal community but an optimistic one. Equally important, we aim to strengthen transparency in SSCB governance by encouraging class representatives to raise feedback on the SSCB itself, how it can improve, evolve, and serve better in its future endeavors. Because in Sentro, kayo ang sentro ng serbisyo.</p>
+        </div>
+      </article>
+
+      <article class="platform-accordion">
+        <button class="platform-toggle" type="button" aria-expanded="false" aria-controls="platform-panel-11">
+          <span class="platform-icon icon-csya" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 19h16"></path>
+              <path d="M7 19V9"></path>
+              <path d="M12 19V5"></path>
+              <path d="M17 19v-7"></path>
+            </svg>
+          </span>
+          <span>
+            <span class="platform-title">CSYA Reimagined</span>
+            <span class="platform-summary">A clearer, more reliable CSYA process that drives meaningful participation.</span>
+          </span>
+          <span class="platform-indicator" aria-hidden="true">+</span>
+        </button>
+        <div class="platform-panel" id="platform-panel-11">
+          <p>As aspiring student leaders, our core objective in strengthening the CSYA system is to foster deeper student engagement, built on a foundation of transparency and reliability. We believe that when students see a clear, organize, and comprehensive sets of rules and regulations, executed systematically from planning to evaluation, they gain confidence in the process. Reliability transforms participation into something meaningful, allowing students to find genuine purpose in every point they aim to pursue. This, we believe, is the true spirit of winning CSYA points: not merely accumulating scores, but cultivating a culture of trust, collaboration, and authentic involvement that reflects the values of service we ourselves have experienced.</p>
+        </div>
+      </article>
+
+      <article class="platform-accordion">
+        <button class="platform-toggle" type="button" aria-expanded="false" aria-controls="platform-panel-7">
+          <span class="platform-icon icon-tohought" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 8h16v12H4z"></path>
+              <path d="M4 8l8 6 8-6"></path>
+            </svg>
+          </span>
+          <span>
+            <span class="platform-title">Gift Ko 'TOHought</span>
+            <span class="platform-summary">Section-based Christmas gifting that honors school staff with gratitude.</span>
+          </span>
+          <span class="platform-indicator" aria-hidden="true">+</span>
+        </button>
+        <div class="platform-panel" id="platform-panel-7">
+          <p>As part of the Christmas festivities, our partylist proposes a platform where each section contributes items dedicated to the school staff, which will then be wrapped as gifts. We believe that gifts during Christmas carry greater meaning when they are chosen with thought, reflecting care and gratitude. Through this initiative, we aim to honor the staff who consistently nurture and maintain our facilities with dedication by offering them tokens of appreciation that embody the same thoughtfulness they extend to our community.</p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
