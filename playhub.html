@@ -351,6 +351,9 @@
 
       <!-- Controls -->
       <div class="controls-row">
+        <button class="btn btn-primary" id="btn-start">Start Game</button>
+      </div>
+      <div class="controls-row" id="game-controls" style="display:none">
         <button class="btn btn-primary" id="btn-submit">Submit</button>
         <button class="btn btn-ghost" id="btn-shuffle">Shuffle</button>
         <button class="btn btn-ghost" id="btn-new">New Game</button>
@@ -384,6 +387,7 @@
       let timerInterval = null;
       let elapsedSeconds = 0;
       let won = false;
+      let started = false;
       let selectedIndex = null;
 
       /* ── DOM refs ── */
@@ -394,6 +398,8 @@
       const winAnswer     = document.getElementById('win-answer');
       const winTime       = document.getElementById('win-time');
       const winAttempts   = document.getElementById('win-attempts');
+      const btnStart     = document.getElementById('btn-start');
+      const gameControls  = document.getElementById('game-controls');
       const btnSubmit     = document.getElementById('btn-submit');
       const btnShuffle    = document.getElementById('btn-shuffle');
       const btnNew        = document.getElementById('btn-new');
@@ -440,7 +446,7 @@
         tilesRow.innerHTML = '';
         current.forEach((letter, i) => {
           const tile = document.createElement('div');
-          tile.className = 'letter-tile' + (i === selectedIndex ? ' selected' : '') + (won ? ' locked' : '');
+          tile.className = 'letter-tile' + (i === selectedIndex ? ' selected' : '') + ((won || !started) ? ' locked' : '');
           tile.textContent = letter;
           tile.setAttribute('role', 'listitem');
           tile.setAttribute('aria-label', `Letter ${letter}, position ${i + 1}`);
@@ -456,7 +462,7 @@
 
       /* ── Click-to-swap logic ── */
       function onTileClick(i) {
-        if (won) return;
+        if (won || !started) return;
         if (selectedIndex === null) {
           selectedIndex = i;
         } else if (selectedIndex === i) {
@@ -466,6 +472,14 @@
           selectedIndex = null;
         }
         renderTiles();
+      }
+
+      /* ── Start game ── */
+      function onStart() {
+        started = true;
+        btnStart.parentElement.style.display = 'none';
+        gameControls.style.display = '';
+        startTimer();
       }
 
       /* ── Submit ── */
@@ -499,6 +513,7 @@
       /* ── New game ── */
       function newGame() {
         won = false;
+        started = false;
         attempts = 0;
         selectedIndex = null;
         secret = shuffle([...LETTERS]);
@@ -507,19 +522,21 @@
         while (countMatches(current, secret) !== 0);
         feedbackText.innerHTML = '';
         winOverlay.classList.remove('visible');
+        gameControls.style.display = 'none';
+        btnStart.parentElement.style.display = '';
         renderTiles();
-        startTimer();
       }
 
       /* ── Event listeners ── */
+      btnStart.addEventListener('click', onStart);
       btnSubmit.addEventListener('click', onSubmit);
       btnShuffle.addEventListener('click', onShuffle);
       btnNew.addEventListener('click', newGame);
       btnPlayAgain.addEventListener('click', newGame);
 
-      /* Keyboard: Enter to submit */
+      /* Keyboard: Enter to submit — only when game is active */
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && !won) onSubmit();
+        if (e.key === 'Enter' && !won && gameControls.style.display !== 'none') onSubmit();
       });
 
       /* ── Boot ── */
