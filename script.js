@@ -6,7 +6,7 @@ const bannerMarkup = `
 				<a href="main.html">Main</a>
 				<a href="party-members.html">Credentials</a>
 				<a href="platforms-agenda.html">Platforms</a>
-				<a href="gamification.html">Play Hub</a>
+				<a href="playhub.html">Play Hub</a>
 			</nav>
 			<div class="banner-socials" aria-label="External links">
 				<a class="social-link" href="https://www.facebook.com/DLSLSentro" target="_blank" rel="noopener noreferrer" aria-label="Facebook link">
