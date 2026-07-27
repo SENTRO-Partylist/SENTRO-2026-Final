@@ -560,7 +560,7 @@ const sentroMembers = [
 	},
 	{
 		id: "faith",
-		fullName: "Faith Loraigne J. Robdelas",
+		fullName: "Faith Loraigne J. Rodelas",
 		position: "Grade 11 SE Representative",
 		imageUrl: "img/members/faith.png",
 		credentials: {
@@ -902,7 +902,7 @@ const sentroMembers = [
 	},
 	{
 		id: "vien",
-		fullName: "Vien Laurizz O. Pagsusiran",
+		fullName: "Vien Laurizz O. Pagsugiran",
 		position: "Grade 11 HA Representative",
 		imageUrl: "img/members/vien.png",
 		credentials: {
